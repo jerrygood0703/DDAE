@@ -1,5 +1,7 @@
 # DDAE speech enhancement
 
+**Hyper-parameters are not tuned to optimal**
+
 Extract spectrogram features:
 
 ```
