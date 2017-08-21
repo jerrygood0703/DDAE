@@ -31,7 +31,7 @@ with open(noisylistpath, 'r') as f:
     for line in f:
         filename = line.split('/')[-1][:-1]
         print idx
-        y,sr=librosa.load(line[:-1],sr=16000)
+        y,sr=librosa.load(line[:-1],sr=RATE)
         D=librosa.stft(y,n_fft=FRAMESIZE,hop_length=OVERLAP,win_length=FFTSIZE,window=scipy.signal.hamming)
         Sxx=np.log10(abs(D)**2) 
         print 'spec.shape' + str(Sxx.shape)
@@ -56,7 +56,7 @@ with open(cleanlistpath, 'r') as f:
     for line in f:
         filename = line.split('/')[-1][:-1]
         print c_idx
-        y,sr=librosa.load(line[:-1],sr=16000)
+        y,sr=librosa.load(line[:-1],sr=RATE)
         D=librosa.stft(y,n_fft=FRAMESIZE,hop_length=OVERLAP,win_length=FFTSIZE,window=scipy.signal.hamming)
         Sxx=np.log10(abs(D)**2) 
         print 'spec.shape' + str(Sxx.shape)

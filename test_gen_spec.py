@@ -52,7 +52,7 @@ with open(noisylistpath, 'r') as f:
     for line in f:
         filename = line.split('/')[-1][:-1]
         print filename
-        y,sr=librosa.load(line[:-1],sr=16000)
+        y,sr=librosa.load(line[:-1],sr=RATE)
         training_data = np.empty((10000, FBIN, FRAMEWIDTH*2+1)) # For Noisy data
 
         Sxx, phase, mean, std = make_spectrum_phase(y, FRAMESIZE, OVERLAP, FFTSIZE)
@@ -74,4 +74,4 @@ with open(noisylistpath, 'r') as f:
 
         recons_y = recons_spec_phase(Sxx, phase)
         output = librosa.util.fix_length(recons_y, y.shape[0])
-        wav.write(os.path.join("enhanced",filename),16000,np.int16(output*32767))
+        wav.write(os.path.join("enhanced",filename),RATE,np.int16(output*32767))
